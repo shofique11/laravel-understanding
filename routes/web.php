@@ -1,5 +1,8 @@
 <?php
 
+use App\Facades\Greeting;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/faceade', function () {
+    Cache::put('name','shofique',2);
+    $value = Cache::get('name');
+    echo $value;
+    Log::info('Cache has been updated!');
+});
+Route::get('/greeting', function () {
+  echo Greeting::sayHello("Shofique");
 });
