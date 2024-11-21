@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Services\StripePaymentGateway;
+use App\Contracts\PaymentGateway;
 use Illuminate\Support\ServiceProvider;
+use PaypalPaymentGateway;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+       // $this->app->bind(PaymentGateway::class, StripePaymentGateway::class, PaypalPaymentGateway::class);
+        $this->app->singleton(PaymentGateway::class, StripePaymentGateway::class,PaypalPaymentGateway::class);
+        
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\OrderController as OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/stripe-payment', [OrderController::class, 'stripeProcessOrder']);
+Route::get('/paypal-payment', [OrderController::class, 'paypalProcessOrder']);
